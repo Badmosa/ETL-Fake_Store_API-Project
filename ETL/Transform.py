@@ -19,33 +19,28 @@ def transform_product(product_df):
         'product_description',
     ]]
 
-    df['product_price'] = df['product_price'].astype(float)
+    df['product_price'] = pd.to_numeric(df['product_price'], errors='coerce')
 
     return df
 
+
 def transform_users(user_df):
     df = user_df.copy()
-    df['first_name'] = df['name'].apply(lambda x: x['first_name'])
-    df['last_name'] = df['name'].apply(lambda x: x['last_name'])
+
+    df['first_name'] = df['name'].apply(lambda x: x['firstname'].title())
+    df['last_name'] = df['name'].apply(lambda x: x['lastname'].title())
 
     df['street'] = df['address'].apply(lambda x: x['street'])
     df['city'] = df['address'].apply(lambda x: x['city'])
     df['zipcode'] = df['address'].apply(lambda x: x['zipcode'])
 
-    df = df.rename(columns= {
-        'id':           'user_id',
-        'email':        'user_email',
-        'username':     'username'
+    df = df.rename(columns={
+        'id': 'user_id',
+        'email': 'user_email',
     })
-    df = df[[
-        'user_id',
-        'user_email',
-        'username',
-        'first_name',
-        'last_name',
-        'street',
-        'city',
-        'zipcode'
-    ]]
 
-    return df
+    return df[[
+        'user_id', 'user_email', 'username',
+        'first_name', 'last_name',
+        'street', 'city', 'zipcode',
+    ]]
