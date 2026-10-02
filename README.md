@@ -2,6 +2,8 @@
 
 A simple ETL pipeline that pulls product and user data from the [Fake Store API](https://fakestoreapi.com), cleans it with pandas, and loads it into a PostgreSQL database.
 
+![alt text](structure.png)
+
 ## How it works
 
 | Step | File | What it does |
@@ -82,5 +84,5 @@ You should see progress messages for each stage, ending with `ETL pipeline compl
 
 ## Author
 
-**Badmos Ayomide**, Data Engineer
+**Badmos Adesola Ayomide**, Data Engineer
 [LinkedIn](https://linkedin.com/in/badmosayomide)
